@@ -10,8 +10,10 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-let token = null;
+const port = process.env.PORT || 3000;
 const time = '*/30 * * * * *';
+
+let token = null;
 let isSend = false;
 
 function pushNotification(data) {
@@ -25,18 +27,6 @@ function pushNotification(data) {
     }
   })
 }
-
-app.post('/registerToken', (req, res) => {
-  const newToken = req.body.token;
-  if (newToken && newToken.length > 0) {
-    if (!token || (newToken && (token !== newToken))) {
-      token = newToken;
-      res.send('Thành công');
-    }
-  } else {
-    res.send('Có lỗi xảy ra');
-  }
-});
 
 function crawlData() {
   request("https://divineshop.vn/index.php?route=product/search&tag=garena", (error, response, body) => {
@@ -59,8 +49,24 @@ function crawlData() {
   });
 }
 
-app.listen(3000, () => {
-  schedule.scheduleJob(time, function (fireDate) {
+app.post('/registerToken', (req, res) => {
+  const newToken = req.body.token;
+  if (newToken && newToken.length > 0) {
+    if (!token || (newToken && (token !== newToken))) {
+      token = newToken;
+      res.send('Thành công');
+    }
+  } else {
+    res.send('Có lỗi xảy ra');
+  }
+});
+
+app.get('/', function (req, res) {
+  res.send('</div>hello world</div>');
+});
+
+app.listen(port, () => {
+  schedule.scheduleJob(time, function () {
     crawlData();
   });
 });
