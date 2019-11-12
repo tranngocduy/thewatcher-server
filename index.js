@@ -86,7 +86,10 @@ app.post('/registerToken', (req, res) => {
 });
 
 app.get('/', function (req, res) {
-  let contentTxt = fs.readFileSync('log.txt', 'utf8');
+  let contentTxt = 'Đang kiểm tra ...';
+  if (fs.existsSync('log.txt')) {
+    contentTxt = fs.readFileSync('log.txt', 'utf8');
+  }
   res.send('</div>' + contentTxt + '</div>');
 });
 
