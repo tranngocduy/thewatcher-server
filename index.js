@@ -4,6 +4,7 @@ const axios = require('axios');
 const request = require('request');
 const cheerio = require('cheerio');
 const schedule = require('node-schedule');
+const http = require('http');
 
 const app = express();
 
@@ -69,4 +70,7 @@ app.listen(port, () => {
   schedule.scheduleJob(time, function () {
     crawlData();
   });
+  setInterval(function () {
+    http.get("https://thewatcher-server.herokuapp.com/");
+  }, 600000); // every 5 minutes (300000)
 });
