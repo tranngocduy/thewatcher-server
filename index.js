@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const port = process.env.PORT || 3000;
-const time = '*/30 * * * * *';
+const time = '*/1 * * * *';
 
 let token = null;
 let isSend = false;
@@ -51,6 +51,11 @@ function crawlData() {
       let contentTxt = "";
       if (fs.existsSync('log.txt')) {
         contentTxt = fs.readFileSync('log.txt', 'utf8');
+        const countColum = contentTxt.split('<br />').length;
+        if (countColum >= 1440) {
+          fs.unlinkSync('log.txt')
+          contentTxt = "";
+        }
       }
 
       const valueTxt = contentTxt + (contentTxt.length > 0 ? "\n<br />" : "") + new Date() + " - count : " + ds.length;
