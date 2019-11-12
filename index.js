@@ -5,6 +5,7 @@ const request = require('request');
 const cheerio = require('cheerio');
 const schedule = require('node-schedule');
 const http = require('http');
+const fs = require('fs');
 
 const app = express();
 
@@ -46,6 +47,19 @@ function crawlData() {
       } else if (isSend) {
         isSend = false;
       }
+
+      let contentTxt = "";
+      if (fs.existsSync('log.txt')) {
+        contentTxt = fs.readFileSync('log.txt', 'utf8');
+      }
+
+      const valueTxt = contentTxt + (contentTxt.length > 0 ? "\n<br />" : "") + new Date() + " - count : " + ds.length;
+
+      fs.writeFile('log.txt', valueTxt, { encoding: 'utf8' }, function (err) {
+        if (err)
+          return console.log(err);
+        console.log('Wrote Hello World in file helloworld.txt, just check it');
+      });
     }
   });
 }
@@ -65,7 +79,8 @@ app.post('/registerToken', (req, res) => {
 });
 
 app.get('/', function (req, res) {
-  res.send('</div>hello world</div>');
+  let contentTxt = fs.readFileSync('log.txt', 'utf8');
+  res.send('</div>' + contentTxt + '</div>');
 });
 
 app.listen(port, () => {
