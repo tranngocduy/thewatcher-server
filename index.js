@@ -55,10 +55,10 @@ app.post('/registerToken', (req, res) => {
   if (newToken && newToken.length > 0) {
     if (!token || (newToken && (token !== newToken))) {
       token = newToken;
-      res.send('Thành công');
+      res.send({ isSuccess: true });
     }
   } else {
-    res.send('Có lỗi xảy ra');
+    res.send({ isSuccess: false });
   }
 });
 
