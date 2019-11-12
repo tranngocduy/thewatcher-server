@@ -51,8 +51,10 @@ function crawlData() {
       let contentTxt = "";
       if (fs.existsSync('log.txt')) {
         contentTxt = fs.readFileSync('log.txt', 'utf8');
-        const countColum = contentTxt.split('<br />').length;
-        if (countColum >= 1440) {
+        const list = contentTxt.split('<br />');
+        const timeStart = list[0].split(' - ');
+        const countTime = new Date() - new Date(timeStart[0]);
+        if (countTime >= 864000000) {
           fs.unlinkSync('log.txt')
           contentTxt = "";
         }
