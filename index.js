@@ -55,10 +55,12 @@ app.post('/registerToken', (req, res) => {
   if (newToken && newToken.length > 0) {
     if (!token || (newToken && (token !== newToken))) {
       token = newToken;
-      res.send({ isSuccess: true });
+      res.send({ isSuccess: true, message: '' });
+    } else {
+      res.send({ isSuccess: false, message: 'Thiết bị đã dc đăng kí' });
     }
   } else {
-    res.send({ isSuccess: false });
+    res.send({ isSuccess: false, message: '' });
   }
 });
 
