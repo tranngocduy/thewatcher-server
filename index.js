@@ -54,7 +54,7 @@ function crawlData() {
         const list = contentTxt.split('<br />');
         const timeStart = list[0].split(' - ');
         const countTime = new Date() - new Date(timeStart[0]);
-        if (countTime >= 864000000) {
+        if (countTime >= 86400000) {
           fs.unlinkSync('log.txt')
           contentTxt = "";
         }
