@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 const port = process.env.PORT || 3000;
 const time = '*/1 * * * *';
 
-let token = null;
+let token = 'ExponentPushToken[XD9kPCLQpdz4u-2x_KATYg]';
 let isSend = false;
 
 function pushNotification(data) {
