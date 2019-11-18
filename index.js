@@ -44,7 +44,7 @@ function crawlData() {
           "body": "Thay đổi khyến mãi sò !!!"
         }
         pushNotification(data);
-      } else if (isSend) {
+      } else if ((ds.length === 2) && isSend) {
         isSend = false;
       }
 
