@@ -36,7 +36,7 @@ function crawlData() {
       console.log('error')
     } else {
       $ = cheerio.load(body);
-      const ds = $(body).find('.product-thumb');
+      const ds = $(body).find('.item-game-wrapper');
       if (!!(ds.length !== 2) && !isSend) {
         isSend = true;
         const data = {
