@@ -35,6 +35,25 @@ function crawlData() {
   request("https://divineshop.vn/index.php?route=product/search&tag=garena", (error, response, body) => {
     if (error) {
       console.log('error')
+      let contentTxt = error;
+      if (fs.existsSync('log.txt')) {
+        contentTxt = fs.readFileSync('log.txt', 'utf8');
+        const list = contentTxt.split('<br />');
+        const timeStart = list[0].split(' - ');
+        const countTime = new Date() - new Date(timeStart[0]);
+        if (countTime >= 86400000) {
+          fs.unlinkSync('log.txt')
+          contentTxt = "";
+        }
+      }
+
+      const valueTxt = contentTxt + (contentTxt.length > 0 ? "\n<br />" : "") + new Date() + " - count : " + ds.length;
+
+      fs.writeFile('log.txt', valueTxt, { encoding: 'utf8' }, function (err) {
+        if (err)
+          return console.log(err);
+        console.log('Wrote Hello World in file helloworld.txt, just check it');
+      });
     } else {
       $ = cheerio.load(body);
       const ds = $(body).find('.item-game-wrapper');
