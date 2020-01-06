@@ -6,6 +6,7 @@ const cheerio = require('cheerio');
 const schedule = require('node-schedule');
 const https = require('https');
 const fs = require('fs');
+const moment = require('moment');
 
 const app = express();
 
@@ -86,7 +87,7 @@ app.post('/registerToken', (req, res) => {
 });
 
 app.get('/', function (req, res) {
-  let contentTxt = 'Đang kiểm tra ...';
+  let contentTxt = `Đang kiểm tra (${moment().format('L HH:mm:ss')})...`;
   if (fs.existsSync('log.txt')) {
     contentTxt = fs.readFileSync('log.txt', 'utf8');
   }
