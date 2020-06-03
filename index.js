@@ -113,6 +113,14 @@ app.get('/', function (req, res) {
   res.send('</div>' + contentTxt + '</div>');
 });
 
+app.get('/qrcode', function (res, req) {
+  try {
+    req.sendFile(__dirname + '/index.html');
+  } catch (error) {
+    console.log('error', error)
+  }
+});
+
 app.listen(port, () => {
   schedule.scheduleJob(time, function () {
     crawlData();
