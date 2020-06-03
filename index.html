@@ -7,26 +7,7 @@
 
   <script>
     (function () {
-      let url = `intent://details?id=com.fvptrade`;
-      
-      let resultAgent = 'unknown';
-      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-      if (/android/i.test(userAgent)) {
-        resultAgent = "Android";
-      }
-
-      // iOS detection from: http://stackoverflow.com/a/9039885/177710
-      if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-        resultAgent = "iOS";
-      }
-
-      if (resultAgent === 'Android') {
-        window.location = url;
-
-      } else if (resultAgent === 'iOS') {
-        window.location = url;
-      }
+      window.location = `intent://details?id=com.fvptrade`;
     })();
   </script>
 </head>
