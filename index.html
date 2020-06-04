@@ -7,7 +7,17 @@
 
   <script>
     (function () {
-      window.location = `fvpcircle://chat/jane`;
+      alert('Running');
+      var fallbackToStore = function () {
+        window.location.replace('market://details?id=com.fvptrade');
+      };
+      var openApp = function () {
+        window.location.replace('fvpcircle://home');
+      };
+      var triggerAppOpen = function () {
+        openApp();
+        setTimeout(fallbackToStore, 250);
+      };
     })();
   </script>
 </head>
