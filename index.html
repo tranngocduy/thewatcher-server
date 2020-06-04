@@ -6,7 +6,8 @@
   <title>Title of the document</title>
   <script>
     setTimeout(function () {
-      window.parent.location.href = 'fvpcircleapp://fvpcircle/1';
+      var button = document.getElementById('deeplink');
+      button.click();
     }, 3000);
   </script>
 </head>
