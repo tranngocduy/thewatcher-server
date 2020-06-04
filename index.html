@@ -8,17 +8,18 @@
   <script>
     (function () {
       var fallbackToStore = function () {
-        window.location.replace('market://details?id=com.fvptrade');
+        window.location = 'market://details?id=com.fvptrade';
       };
       var openApp = function () {
-        window.location.replace('fvpcircle://home');
+        window.location = 'fvpcircle://home';
       };
       var triggerAppOpen = function () {
-        console.log('Running App');
         openApp();
         setTimeout(fallbackToStore, 250);
       };
-      triggerAppOpen();
+      setTimeout(function () {
+        triggerAppOpen();
+      }, 1000);
     })();
   </script>
 </head>
