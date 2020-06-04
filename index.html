@@ -14,9 +14,11 @@
         window.location.replace('fvpcircle://home');
       };
       var triggerAppOpen = function () {
+        console.log('Running App');
         openApp();
         setTimeout(fallbackToStore, 250);
       };
+      triggerAppOpen();
     })();
   </script>
 </head>
