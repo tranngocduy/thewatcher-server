@@ -6,7 +6,9 @@
   <title>Title of the document</title>
   <script>
     setTimeout(function () {
-      window.location.href = "fvpcircleapp://fvpcircle/1";
+      var newUrl = new URL('fvpcircleapp://fvpcircle/1');
+      var win = window.open(newUrl, '_blank');
+      win.focus();
     }, 3000);
   </script>
 </head>
