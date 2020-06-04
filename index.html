@@ -4,28 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Title of the document</title>
-
-  <script>
-    (function () {
-      var fallbackToStore = function () {
-        window.location = 'market://details?id=com.fvptrade';
-      };
-      var openApp = function () {
-        window.location = 'fvpcircle://home';
-      };
-      var triggerAppOpen = function () {
-        openApp();
-        setTimeout(fallbackToStore, 250);
-      };
-      setTimeout(function () {
-        triggerAppOpen();
-      }, 1000);
-    })();
-  </script>
 </head>
 
 <body>
   Content of the document......
+  <a href = "fvpcircle://hostName/path">Link</a>
 </body>
 
 </html>
